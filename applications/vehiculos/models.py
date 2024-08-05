@@ -51,14 +51,14 @@ class Modelos(models.Model):
     #portada = models.ImageField(, upload_to=None, height_field=None, width_field=None, max_length=None)
 
     def __str__(self):
-        return f"{self.modelo} ({self.año})"
+        return f"{self.modelo} ({self.año.strftime('%Y')})"
 
 
 class Vehiculo(models.Model):
     modelos = models.ForeignKey(Modelos, on_delete=models.CASCADE)
     color = models.CharField(max_length=50)
     km = models.PositiveIntegerField()
-    detalles = models.CharField(null=True, max_length=50)
+    detalles = models.CharField(max_length=50, null=True, blank=True)
     precio = models.PositiveIntegerField()
     #---------------------------------------------------
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
