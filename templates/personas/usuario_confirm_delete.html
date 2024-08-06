@@ -1,0 +1,9 @@
+{% block content %}
+  <h1>Confirmar Eliminación</h1>
+  <p>¿Estás seguro de que deseas eliminar "{{ usuario.nombre }} {{ usuario.apellido }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a href="{% url 'personas_app:usuarios-list' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+{% endblock %}

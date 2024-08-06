@@ -1,0 +1,43 @@
+{% block content %}
+  <h1>Lista de Usuarios</h1>
+  <form method="get">
+    <div class="form-group">
+      <label for="id_query">Buscar usuarios:</label>
+      {{ form.query }}
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
+  <ul>
+    {% for usuario in usuarios %}
+      <li>
+        <a href="{% url 'personas_app:usuarios-detail' usuario.pk %}">
+          {{ usuario.nombre }} {{ usuario.apellido }} - {{ usuario.dni }}
+        </a>
+        <a href="{% url 'personas_app:usuarios-delete' usuario.pk %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
+          <i class="fa fa-trash"></i> Eliminar
+        </a>
+      </li>
+    {% empty %}
+      <li>No se encontraron usuarios.</li>
+    {% endfor %}
+  </ul>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if usuarios.has_previous %}
+            <a href="?page=1">&laquo; primero</a>
+            <a href="?page={{ usuarios.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ usuarios.number }} de {{ usuarios.paginator.num_pages }}.
+        </span>
+
+        {% if usuarios.has_next %}
+            <a href="?page={{ usuarios.next_page_number }}">siguiente</a>
+            <a href="?page={{ usuarios.paginator.num_pages }}">último &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+{% endblock %}

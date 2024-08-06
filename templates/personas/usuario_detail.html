@@ -1,0 +1,10 @@
+{% block content %}
+  <h1>Detalles del Usuario</h1>
+  <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+  <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+  <p><strong>DNI:</strong> {{ usuario.dni }}</p>
+  <!-- Añade más campos según sea necesario -->
+  
+  <a href="{% url 'personas_app:usuarios-edit' usuario.pk %}" class="btn btn-primary">Editar</a>
+  <a href="{% url 'personas_app:usuarios-list' %}" class="btn btn-secondary">Volver a la lista</a>
+{% endblock %}
