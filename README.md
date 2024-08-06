@@ -6,6 +6,12 @@ Bienvenido a **Dream Cars**, la aplicación de concesionaria desarrollada con Dj
 
 **Dream Cars** es una plataforma integral para concesionarias de autos, diseñada para facilitar la gestión de inventario, ventas, comentarios de usuarios y empleados. Con una estructura modular basada en Django, este proyecto incluye aplicaciones y modelos que cubren todos los aspectos necesarios para el funcionamiento eficiente de una concesionaria.
 
+## Requisitos
+- Python
+- Django
+- Postgresql
+- psycopg2
+
 ## Aplicaciones y Modelos
 
 ### Foro
