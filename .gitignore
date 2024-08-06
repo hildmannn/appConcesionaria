@@ -17,7 +17,7 @@ venv/
 *.log
 
 # Ignorar archivos de configuración específicos (ejemplo adicional)
-concesionaria/settings/local.py
+appConcesionaria/concesionaria/settings/local.py
 
 # Ignorar archivos de configuración de PostgreSQL
 pgdata/
