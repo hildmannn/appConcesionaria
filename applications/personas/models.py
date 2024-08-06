@@ -19,10 +19,10 @@ class Usuarios(models.Model): #puede ser tanto cliente como usuario
 
 class Empleados(models.Model):
     PUESTO_CHOICES = (
-        ('0','CONTADOR'),
+        ('0','VENDEDOR'),
         ('1','ADMINISTRADOR'),
-        ('2','ECONOMISTA'),
-        ('3','OTRO'),
+        ('2','USUARIO'),
+        ('3','GERENTE'),
     )
     nombre = models.CharField(max_length=40)
     apellido = models.CharField(max_length=40)

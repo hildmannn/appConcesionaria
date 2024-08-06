@@ -26,8 +26,9 @@ class FichasTecnicas(models.Model):
         ('1','3'),
         ('2','4'),
         ('3','5'),
+        
     )
-    estado = models.CharField( null=True,max_length=1, choices=CANTIDAD_CHOICES)
+    puertas = models.CharField( null=True, blank=True, max_length=1, choices=CANTIDAD_CHOICES)
     cilindradas = models.CharField(max_length=50)
     TIPO_CHOICES = (
         ('0','electricidad'),
@@ -59,7 +60,6 @@ class Vehiculo(models.Model):
     color = models.CharField(max_length=50)
     km = models.PositiveIntegerField()
     detalles = models.CharField(max_length=50, null=True, blank=True)
-    precio = models.PositiveIntegerField()
     #---------------------------------------------------
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
     compra = models.PositiveIntegerField('precio compra',null=True)

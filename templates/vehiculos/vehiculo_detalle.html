@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalles del Vehículo</title>
+</head>
+<body>
+    <h1>Detalles del Vehículo</h1>
+    <p><strong>Modelo:</strong> {{ vehiculo.modelos.modelo }}</p>
+    <p><strong>Categoría:</strong> {{ vehiculo.modelos.categoria }}</p>
+    <p><strong>Marca:</strong> {{ vehiculo.modelos.marcas }}</p>
+    <p><strong>Año:</strong> {{ vehiculo.modelos.año.year }}</p>
+    <p><strong>Ficha Técnica:</strong></p>
+    <ul>
+        <li><strong>Estado:</strong> {{ vehiculo.modelos.fichaTecnica.get_estado_display }}</li>
+        <li><strong>Cilindradas:</strong> {{ vehiculo.modelos.fichaTecnica.cilindradas }}</li>
+        <li><strong>Combustible:</strong> {{ vehiculo.modelos.fichaTecnica.get_combustible_display }}</li>
+        <li><strong>País de Fábrica:</strong> {{ vehiculo.modelos.fichaTecnica.paisFabrica }}</li>
+    </ul>
+    <p><strong>Color:</strong> {{ vehiculo.color }}</p>
+    <p><strong>Kilómetros:</strong> {{ vehiculo.km }}</p>
+    <p><strong>Detalles:</strong> {{ vehiculo.detalles }}</p>
+    <p><strong>Precio:</strong> {{ vehiculo.precio }}$</p>
+    <p><strong>Proveedor:</strong> {{ vehiculo.proveedor }}</p>
+    <p><strong>Precio de Compra:</strong> {{ vehiculo.compra }}$</p>
+    <p><strong>Precio de Venta:</strong> {{ vehiculo.venta }}$</p>
+    <p><strong>Disponibilidad:</strong> {{ vehiculo.disponibilidad|yesno:"Sí,No" }}</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<h1>Vehículos Disponibles</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="id_query">Buscar por modelo o marca:</label>
+        {{ form.query }}
+    </div>
+    <div class="form-group">
+        <label>Marcas:</label>
+        {{ form.marca }}
+    </div>
+    <div class="form-group">
+        <label>Categoría:</label>
+        {{ form.categoria }}
+    </div>
+    <div class="form-group">
+        <label for="id_km_min">Km mínimo:</label>
+        {{ form.km_min }}
+        <label for="id_km_max">Km máximo:</label>
+        {{ form.km_max }}
+    </div>
+    <div class="form-group">
+        <label for="id_año_min">Año mínimo:</label>
+        {{ form.año_min }}
+        <label for="id_año_max">Año máximo:</label>
+        {{ form.año_max }}
+    </div>
+    <div class="form-group">
+        <label for="id_precio_min">Precio mínimo:</label>
+        {{ form.precio_min }}
+        <label for="id_precio_max">Precio máximo:</label>
+        {{ form.precio_max }}
+    </div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<ul>
+    {% for vehiculo in vehiculos %}
+        <li>{{ vehiculo }}</li>
+    {% endfor %}
+</ul>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if vehiculos.has_previous %}
+            <a href="?page=1">&laquo; primero</a>
+            <a href="?page={{ vehiculos.previous_page_number }}">anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ vehiculos.number }} de {{ vehiculos.paginator.num_pages }}.
+        </span>
+
+        {% if vehiculos.has_next %}
+            <a href="?page={{ vehiculos.next_page_number }}">siguiente &raquo;</a>
+            <a href="?page={{ vehiculos.paginator.num_pages }}">último &raquo;</a>
+        {% endif %}
+    </span>
+</div>
