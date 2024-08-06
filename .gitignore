@@ -1,0 +1,40 @@
+# Ignorar archivos de configuración específicos
+concesionaria/settings/settings.py
+
+# Ignorar archivos compilados de Python
+*.pyc
+__pycache__/
+
+# Ignorar entornos virtuales
+env/
+venv/
+
+# Ignorar archivos de bases de datos locales
+*.sqlite3
+*.sqlite3-journal
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar archivos de configuración específicos (ejemplo adicional)
+concesionaria/settings/local.py
+
+# Ignorar archivos de configuración de PostgreSQL
+pgdata/
+postgresql.conf
+pg_hba.conf
+
+# Ignorar archivos de credenciales y claves
+*.pem
+*.key
+*.crt
+
+# Ignorar archivos de caché y otros temporales
+*.cache
+*.swp
+*.tmp
+*.DS_Store
+
+# Ignorar archivos de migración de Django
+*/migrations/
+!*/migrations/__init__.py

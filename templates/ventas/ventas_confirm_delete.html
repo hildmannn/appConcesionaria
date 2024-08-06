@@ -1,0 +1,11 @@
+
+
+{% block content %}
+  <h1>Eliminar Venta</h1>
+  <p>¿Estás seguro de que deseas eliminar esta venta?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+  </form>
+  <a href="{% url 'ventas:ventas_list' %}">Volver a la lista</a>
+{% endblock %}

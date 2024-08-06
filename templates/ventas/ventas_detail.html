@@ -1,0 +1,16 @@
+
+
+{% block content %}
+  <h1>{{ venta }}</h1>
+  <p>Vehículo: {{ venta.vehiculo }}</p>
+  <p>Cliente: {{ venta.cliente }}</p>
+  <p>Empleado: {{ venta.empleado }}</p>
+  <p>Fecha: {{ venta.fecha }}</p>
+  <p>Medio de Pago: {{ venta.get_medioPago_display }}</p>
+  <p>Cuotas: {{ venta.get_cuotas_display }}</p>
+  <p>Interés: {{ venta.interes }}</p>
+  <p>Monto Financiado: {{ venta.montoFinanciado }}</p>
+  <a href="{% url 'ventas:ventas_update' venta.pk %}">Editar</a>
+  <a href="{% url 'ventas:ventas_delete' venta.pk %}">Eliminar</a>
+  <a href="{% url 'ventas:ventas_list' %}">Volver a la lista</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+
+
+{% block content %}
+  <h1>{% if form.instance.pk %}Editar{% else %}Nueva{% endif %} Venta</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+  <a href="{% url 'ventas:ventas_list' %}">Volver a la lista</a>
+{% endblock %}
