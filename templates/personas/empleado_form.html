@@ -1,0 +1,11 @@
+{% block content %}
+<h1>{% if empleado %}Editar Empleado{% else %}Crear Empleado{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if empleado %}Actualizar{% else %}Crear{% endif %}</button>
+</form>
+
+<a href="{% url 'personas_app:empleados-list' %}">Volver a la lista</a>
+{% endblock %}

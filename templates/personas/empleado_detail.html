@@ -1,0 +1,14 @@
+{% block content %}
+<h1>Detalles del Empleado</h1>
+
+<p><strong>Nombre:</strong> {{ empleado.nombre }}</p>
+<p><strong>Apellido:</strong> {{ empleado.apellido }}</p>
+<p><strong>Dirección:</strong> {{ empleado.direccion }}</p>
+<p><strong>Teléfono:</strong> {{ empleado.telefono }}</p>
+<p><strong>DNI:</strong> {{ empleado.dni }}</p>
+<p><strong>Puesto:</strong> {{ empleado.get_puesto_display }}</p>
+<p><strong>Mutual:</strong> {{ empleado.mutual }}</p>
+<p><strong>Edad:</strong> {{ empleado.edad }}</p>
+
+<a href="{% url 'personas_app:empleados-list' %}">Volver a la lista</a>
+{% endblock %}
