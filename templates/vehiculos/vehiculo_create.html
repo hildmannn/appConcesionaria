@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Vehículo</title>
+</head>
+<body>
+    <h1>Crear Vehículo</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.modelos.id_for_label }}">Modelo</label>
+            {{ form.modelos }}
+            <a href="{% url 'vehiculos_app:modelo-create' %}">Crear nuevo modelo</a>
+        </div>
+        <div class="form-group">
+            <label for="{{ form.proveedor.id_for_label }}">Proveedor</label>
+            {{ form.proveedor }}
+            <a href="{% url 'vehiculos_app:proveedor-create' %}">Crear nuevo proveedor</a>
+        </div>
+        <div class="form-group">
+            {{ form.color.label_tag }}
+            {{ form.color }}
+        </div>
+        <div class="form-group">
+            {{ form.km.label_tag }}
+            {{ form.km }}
+        </div>
+        <div class="form-group">
+            {{ form.detalles.label_tag }}
+            {{ form.detalles }}
+        </div>
+        <div class="form-group">
+            {{ form.compra.label_tag }}
+            {{ form.compra }}
+        </div>
+        <div class="form-group">
+            {{ form.venta.label_tag }}
+            {{ form.venta }}
+        </div>
+        <div class="form-group">
+            {{ form.disponibilidad.label_tag }}
+            {{ form.disponibilidad }}
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'vehiculos_app:vehiculo-list' %}">Volver a la lista</a>
+</body>
+</html>

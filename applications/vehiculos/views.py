@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Vehiculo
-from .forms import VehiculoSearchForm
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse_lazy
+from .models import Vehiculo, Modelos,Marcas, Categorias, FichasTecnicas
+from applications.inventario.models import Proveedor
+from .forms import VehiculoSearchForm, ModelosForm, VehiculoForm
 
 class VehiculosDisponiblesView(ListView):
     model = Vehiculo
@@ -68,4 +70,39 @@ class VehiculoDetailView(DetailView):
     context_object_name = 'vehiculo'
 
 
+class VehiculoCreateView(CreateView):
+    model = Vehiculo
+    form_class = VehiculoForm
+    template_name = 'vehiculos/vehiculo_create.html'
+    success_url = reverse_lazy('vehiculos_app:vehiculo-list')
 
+class ModeloCreateView(CreateView):
+    model = Modelos
+    form_class = ModelosForm
+    template_name = 'vehiculos/modelo_create.html'
+    success_url = reverse_lazy('vehiculos_app:vehiculo-create')
+
+
+class ProveedorCreateView(CreateView):
+    model = Proveedor
+    template_name = 'vehiculos/proveedor_create.html'
+    fields = ['nombre', 'apellido', 'direccion', 'telefono', 'mail', 'paginaWeb', 'estado']
+    success_url = reverse_lazy('vehiculos_app:vehiculo-create')
+
+class CategoriaCreateView(CreateView):
+    model = Categorias
+    template_name = 'vehiculos/categoria_create.html'
+    fields = ['tipoVehiculo']
+    success_url = reverse_lazy('vehiculos_app:categoria-create')
+
+class MarcaCreateView(CreateView):
+    model = Marcas
+    template_name = 'vehiculos/marca_create.html'
+    fields = ['marca']
+    success_url = reverse_lazy('vehiculos_app:marca-create')
+
+class FichaTecnicaCreateView(CreateView):
+    model = FichasTecnicas
+    template_name = 'vehiculos/ficha_tecnica_create.html'
+    fields = ['puertas', 'cilindradas', 'combustible', 'paisFabrica']
+    success_url = reverse_lazy('vehiculos_app:ficha-tecnica-create')
