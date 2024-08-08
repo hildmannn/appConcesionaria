@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Proveedor</title>
+</head>
+<body>
+    <h1>Crear Proveedor</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.nombre.label_tag }}
+            {{ form.nombre }}
+        </div>
+        <div class="form-group">
+            {{ form.apellido.label_tag }}
+            {{ form.apellido }}
+        </div>
+        <div class="form-group">
+            {{ form.direccion.label_tag }}
+            {{ form.direccion }}
+        </div>
+        <div class="form-group">
+            {{ form.telefono.label_tag }}
+            {{ form.telefono }}
+        </div>
+        <div class="form-group">
+            {{ form.mail.label_tag }}
+            {{ form.mail }}
+        </div>
+        <div class="form-group">
+            {{ form.paginaWeb.label_tag }}
+            {{ form.paginaWeb }}
+        </div>
+        <div class="form-group">
+            {{ form.estado.label_tag }}
+            {{ form.estado }}
+        </div>
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'vehiculos_app:vehiculo-create' %}">Volver a la creación de vehículo</a>
+</body>
+</html>
