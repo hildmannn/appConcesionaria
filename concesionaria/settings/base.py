@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'applications.inventario',
     'applications.personas',
     'applications.vehiculos',
-    'applications.ventas'
+    'applications.ventas',
+    'applications.home'
 
 ]
 
