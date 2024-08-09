@@ -1,43 +1,74 @@
+{% extends 'baseAdmin.html' %}
+{% block title %} Lista de Usuarios {% endblock title %}
 {% block content %}
-  <h1>Lista de Usuarios</h1>
-  <form method="get">
-    <div class="form-group">
-      <label for="id_query">Buscar usuarios:</label>
-      {{ form.query }}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Lista de Usuarios</h1>
+
+      <!-- Botón para crear un nuevo usuario -->
+      <div class="text-center">
+        <a href="{% url 'personas_app:usuarios-agregar' %}" class="button primary">Crear Usuario</a>
+      </div>
+
+      <!-- Formulario de búsqueda -->
+      <form method="get">
+        <label for="id_query" class="middle">Buscar usuarios:</label>
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
+            {{ form.query }}
+          </div>
+          <div class="cell shrink">
+            <button type="submit" class="button primary">Buscar</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Lista de usuarios -->
+      <ul class="no-bullet">
+        {% for usuario in usuarios %}
+          <li class="card">
+            <div class="card-section">
+              <div class="grid-x grid-margin-x align-middle">
+                <div class="cell auto">
+                  <a href="{% url 'personas_app:usuarios-detail' usuario.pk %}">
+                    {{ usuario.nombre }} {{ usuario.apellido }} - {{ usuario.dni }}
+                  </a>
+                </div>
+                <div class="cell shrink">
+                  <a href="{% url 'personas_app:usuarios-delete' usuario.pk %}" class="button alert small">
+                    <i class="fa fa-trash"></i> Eliminar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% empty %}
+          <li>No se encontraron usuarios.</li>
+        {% endfor %}
+      </ul>
+
+      <!-- Paginación -->
+      <div class="pagination text-center">
+        <ul class="pagination">
+          {% if usuarios.has_previous %}
+            <li><a href="?page=1">&laquo; primero</a></li>
+            <li><a href="?page={{ usuarios.previous_page_number }}">anterior</a></li>
+          {% endif %}
+
+          <li class="current"><span>Página {{ usuarios.number }} de {{ usuarios.paginator.num_pages }}.</span></li>
+
+          {% if usuarios.has_next %}
+            <li><a href="?page={{ usuarios.next_page_number }}">siguiente</a></li>
+            <li><a href="?page={{ usuarios.paginator.num_pages }}">último &raquo;</a></li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary">Buscar</button>
-  </form>
-
-  <ul>
-    {% for usuario in usuarios %}
-      <li>
-        <a href="{% url 'personas_app:usuarios-detail' usuario.pk %}">
-          {{ usuario.nombre }} {{ usuario.apellido }} - {{ usuario.dni }}
-        </a>
-        <a href="{% url 'personas_app:usuarios-delete' usuario.pk %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
-          <i class="fa fa-trash"></i> Eliminar
-        </a>
-      </li>
-    {% empty %}
-      <li>No se encontraron usuarios.</li>
-    {% endfor %}
-  </ul>
-
-  <div class="pagination">
-    <span class="step-links">
-        {% if usuarios.has_previous %}
-            <a href="?page=1">&laquo; primero</a>
-            <a href="?page={{ usuarios.previous_page_number }}">anterior</a>
-        {% endif %}
-
-        <span class="current">
-            Página {{ usuarios.number }} de {{ usuarios.paginator.num_pages }}.
-        </span>
-
-        {% if usuarios.has_next %}
-            <a href="?page={{ usuarios.next_page_number }}">siguiente</a>
-            <a href="?page={{ usuarios.paginator.num_pages }}">último &raquo;</a>
-        {% endif %}
-    </span>
   </div>
-{% endblock %}
+</div>
+
+{% endblock content %}

@@ -1,10 +1,28 @@
+{% extends 'baseAdmin.html' %}
+{% block title %} Detalles del Usuario {% endblock title %}
 {% block content %}
-  <h1>Detalles del Usuario</h1>
-  <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
-  <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
-  <p><strong>DNI:</strong> {{ usuario.dni }}</p>
-  <!-- Añade más campos según sea necesario -->
-  
-  <a href="{% url 'personas_app:usuarios-edit' usuario.pk %}" class="btn btn-primary">Editar</a>
-  <a href="{% url 'personas_app:usuarios-list' %}" class="btn btn-secondary">Volver a la lista</a>
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Detalles del Usuario</h1>
+      
+      <div class="callout">
+        <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+        <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+        <p><strong>DNI:</strong> {{ usuario.dni }}</p>
+        <p><strong>Dirección:</strong> {{ usuario.direccion }}</p>
+        <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+        <p><strong>Email:</strong> {{ usuario.mail }}</p>
+        <!-- Añade más campos según sea necesario -->
+      </div>
+
+      <div class="text-center">
+        <a href="{% url 'personas_app:usuarios-edit' usuario.pk %}" class="button primary">Editar</a>
+        <a href="{% url 'personas_app:usuarios-list' %}" class="button secondary">Volver a la lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
