@@ -1,9 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Crear Usuario {% endblock title %}
 {% block content %}
-  <h1>{% if form.instance.pk %}Editar{% else %}Agregar{% endif %} Usuario</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Guardar</button>
-  </form>
-  <a href="{% url 'personas_app:usuarios-list' %}" class="btn btn-secondary">Volver a la lista</a>
-{% endblock %}
+
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-10 medium-6 large-4">
+            <h1 class="text-center">{% if form.instance.pk %}Editar{% else %}Agregar{% endif %} Usuario</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <button type="submit" class="button primary">Guardar</button>
+                </div>
+            </form>
+            <div class="text-center">
+                <a href="{% url 'personas_app:usuarios-list' %}" class="button secondary">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
