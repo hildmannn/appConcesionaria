@@ -1,58 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Dream Cars 🏎️</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% load static %}
+{% extends "base.html" %}
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
+{% block title %}
+    Dream Cars 🏎️
+{% endblock %}
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
-
-    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
-
-
-    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" href="">DREAM CARS
-                <img src="{% static 'images/logo.png' %}" alt="Dream Cars logo" class="logo-img"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="oi oi-menu"></span> Menu
-            </button>
-
-            <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="" class="nav-link">Inicio</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Vehiculos</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Planes de ahorro</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Ustedes</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">¿Quienes Somos?</a></li>
-                    <li class="nav-item"><a href="" class="nav-link" id="loginBtn">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="hero-wrap js-fullheight" style="background-image: url('{% static 'images/fondo.jpeg' %}');">
+{% block content %}
+{% load static %}
+    <div class="hero-wrap js-fullheight" style="background-image: url('{{ background_image }}');">
         <div class="overlay"></div>
         <div class="container"> 
             <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
                 <div class="col-md-7 ftco-animate">
                     <span class="subheading" style="color: rgb(252, 251, 251);">Bienvenido a Dream Cars</span>
-                    <h1  style="color: rgb(252, 251, 251);">Haz realidad tu sueño sobre ruedas</h1>
+                    <h1 style="color: rgb(252, 251, 251);">Haz realidad tu sueño sobre ruedas</h1>
                 </div>
                 <a href="{% static 'images/intro.mp4' %}" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                     <span class="fa fa-play"></span>
@@ -60,25 +20,66 @@
             </div>
         </div>
     </div>
+    <footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md pt-5">
+                    <div class="ftco-footer-widget pt-md-5 mb-4">
+                        <h2 class="ftco-heading-2">Acerca de</h2>
+                        <p>En Dreams Cars, somos la concesionaria más destacada del mercado. Nos dedicamos a ofrecerte una experiencia inolvidable.</p>
+                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
+                            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md pt-5 border-left">
+                    <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">Informacion</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Online Enquiry</a></li>
+                            <li><a href="#" class="py-2 d-block">General Enquiries</a></li>
+                            <li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
+                            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
+                            <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
+                            <li><a href="#" class="py-2 d-block">Call Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md pt-5 border-left">
+                    <div class="ftco-footer-widget pt-md-5 mb-4">
+                        <h2 class="ftco-heading-2">Opciones</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">0 KM</a></li>
+                            <li><a href="#" class="py-2 d-block">Usados</a></li>
+                            <li><a href="#" class="py-2 d-block">Planes de ahorro</a></li>
+                            <li><a href="#" class="py-2 d-block">Post Venta</a></li>
+                            <li><a href="#" class="py-2 d-block">Foro</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md pt-5 border-left">
+                    <div class="ftco-footer-widget pt-md-5 mb-4">
+                        <h2 class="ftco-heading-2">Contacta Con Nosotros</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon fa fa-map-marker"></span><span class="text">A005, 123, Río Cuarto, Córdoba</span></li>
+                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+358-800-8990</span></a></li>
+                                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">dream_cars@gmail.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
 
-<!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
-<script src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
-<script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
-<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
-<script src="{% static 'js/scrollax.min.js' %}"></script>
-<script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false' %}"></script>
-<script src="{% static 'js/google-map.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
-
-
-</body>
-</html>
+                    <p>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | DREAM CARS S.A.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+{% endblock %}

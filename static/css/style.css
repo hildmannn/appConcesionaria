@@ -10105,3 +10105,7 @@ textarea.form-control {
       max-width: 100%; /* Garantiza que la imagen no exceda el ancho del contenedor */
     }
     
+    .hero-wrap {
+      background-image: url('/static/images/fondo.jpeg');
+  }
+  

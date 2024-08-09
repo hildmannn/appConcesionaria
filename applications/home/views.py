@@ -1,8 +1,11 @@
 from django.shortcuts import render
-
+from django.templatetags.static import static
 # Create your views here.
-# home/views.py
-from django.shortcuts import render
+
+
 
 def home_view(request):
-    return render(request, 'home/home.html')
+    context = {
+        'background_image': static('images/fondo.jpeg'),
+    }
+    return render(request, 'home/home.html', context)
