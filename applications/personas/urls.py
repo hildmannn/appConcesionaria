@@ -11,6 +11,6 @@ urlpatterns = [
     path('empleados/', EmpleadoListView.as_view(), name='empleados-list'),
     path('empleados/nuevo/', EmpleadoCreateView.as_view(), name='empleados-create'),
     path('empleados/<int:pk>/', EmpleadoDetailView.as_view(), name='empleados-detail'),
-    path('empleados/<int:pk>/editar/', EmpleadoUpdateView.as_view(), name='empleados-update'),
+    path('empleados/<int:pk>/editar/', EmpleadoUpdateView.as_view(), name='empleados-edit'),
     path('empleados/<int:pk>/eliminar/', EmpleadoDeleteView.as_view(), name='empleados-delete'),
 ]

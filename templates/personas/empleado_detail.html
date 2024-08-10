@@ -1,14 +1,29 @@
+{% extends 'baseAdmin.html' %}
+{% block title %} Detalles del Empleado {% endblock title %}
 {% block content %}
-<h1>Detalles del Empleado</h1>
 
-<p><strong>Nombre:</strong> {{ empleado.nombre }}</p>
-<p><strong>Apellido:</strong> {{ empleado.apellido }}</p>
-<p><strong>Dirección:</strong> {{ empleado.direccion }}</p>
-<p><strong>Teléfono:</strong> {{ empleado.telefono }}</p>
-<p><strong>DNI:</strong> {{ empleado.dni }}</p>
-<p><strong>Puesto:</strong> {{ empleado.get_puesto_display }}</p>
-<p><strong>Mutual:</strong> {{ empleado.mutual }}</p>
-<p><strong>Edad:</strong> {{ empleado.edad }}</p>
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Detalles del Empleado</h1>
+      
+      <div class="callout">
+        <p><strong>Nombre:</strong> {{ empleado.nombre }}</p>
+        <p><strong>Dirección:</strong> {{ empleado.direccion }}</p>
+        <p><strong>Teléfono:</strong> {{ empleado.telefono }}</p>
+        <p><strong>DNI:</strong> {{ empleado.dni }}</p>
+        <p><strong>Puesto:</strong> {{ empleado.get_puesto_display }}</p>
+        <p><strong>Mutual:</strong> {{ empleado.mutual }}</p>
+        <p><strong>Edad:</strong> {{ empleado.edad }}</p>
+        <p><strong>Apellido:</strong> {{ empleado.apellido }}</p>
+      </div>
 
-<a href="{% url 'personas_app:empleados-list' %}">Volver a la lista</a>
+      <div class="text-center">
+        <a href="{% url 'personas_app:empleados-edit' empleado.pk %}" class="button primary">Editar</a>
+        <a href="{% url 'personas_app:empleados-list' %}" class="button secondary">Volver a la lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

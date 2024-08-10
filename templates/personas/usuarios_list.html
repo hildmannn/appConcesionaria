@@ -50,23 +50,7 @@
           <li>No se encontraron usuarios.</li>
         {% endfor %}
       </ul>
-
-      <!-- Paginación -->
-      <div class="pagination text-center">
-        <ul class="pagination">
-          {% if usuarios.has_previous %}
-            <li><a href="?page=1">&laquo; primero</a></li>
-            <li><a href="?page={{ usuarios.previous_page_number }}">anterior</a></li>
-          {% endif %}
-
-          <li class="current"><span>Página {{ usuarios.number }} de {{ usuarios.paginator.num_pages }}.</span></li>
-
-          {% if usuarios.has_next %}
-            <li><a href="?page={{ usuarios.next_page_number }}">siguiente</a></li>
-            <li><a href="?page={{ usuarios.paginator.num_pages }}">último &raquo;</a></li>
-          {% endif %}
-        </ul>
-      </div>
+      {% include 'includes/pagination.html' %}
     </div>
   </div>
 </div>

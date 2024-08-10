@@ -1,48 +1,58 @@
+{% extends 'baseAdmin.html' %}
+{% block title %} Lista de Empleados {% endblock title %}
 {% block content %}
-<h1>Lista de Empleados</h1>
 
-<form method="get">
-    {{ form.as_p }}
-    <button type="submit">Buscar</button>
-</form>
+{% include 'includes/header.html' %}
 
-<a href="{% url 'personas_app:empleados-create' %}">Crear nuevo empleado</a>
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Lista de Empleados</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
+      <!-- Botón para crear un nuevo Empleado -->
+      <div class="text-center">
+        <a href="{% url 'personas_app:empleados-create' %}" class="button primary">Crear Empleado</a>
+      </div>
+
+      <!-- Formulario de búsqueda -->
+      <form method="get">
+        <label for="id_query" class="middle">Buscar Empleado:</label>
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
+            {{ form.query }}
+          </div>
+          <div class="cell shrink">
+            <button type="submit" class="button primary">Buscar</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Lista de Empleado -->
+      <ul class="no-bullet">
         {% for empleado in empleados %}
-        <tr>
-            <td><a href="{% url 'personas_app:empleados-detail' empleado.pk %}">{{ empleado.nombre }} {{ empleado.apellido }}</a></td>
-            <td>
-                <a href="{% url 'personas_app:empleados-delete' empleado.pk %}">Eliminar</a>
-            </td>
-        </tr>
+          <li class="card">
+            <div class="card-section">
+              <div class="grid-x grid-margin-x align-middle">
+                <div class="cell auto">
+                    <a href="{% url 'personas_app:empleados-detail' empleado.pk %}">
+                        {{ empleado.nombre }} {{ empleado.apellido }}
+                </div>
+                <div class="cell shrink">
+                  <a href="{% url 'personas_app:empleados-delete' empleado.pk %}" class="button alert small">
+                    <i class="fa fa-trash"></i> Eliminar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% empty %}
+          <li>No se encontraron Empleados.</li>
         {% endfor %}
-    </tbody>
-</table>
-
-<div class="pagination">
-    <span class="step-links">
-        {% if empleados.has_previous %}
-            <a href="?page=1">&laquo; primero</a>
-            <a href="?page={{ empleados.previous_page_number }}">anterior</a>
-        {% endif %}
-
-        <span class="current">
-            Página {{ empleados.number }} de {{ empleados.paginator.num_pages }}.
-        </span>
-
-        {% if empleados.has_next %}
-            <a href="?page={{ empleados.next_page_number }}">siguiente</a>
-            <a href="?page={{ empleados.paginator.num_pages }}">último &raquo;</a>
-        {% endif %}
-    </span>
+      </ul>
+      {% include 'includes/pagination.html' %}
+    </div>
+  </div>
 </div>
 
-{% endblock %}
+{% endblock content %}
+

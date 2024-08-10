@@ -1,0 +1,28 @@
+<!--Paginacion-->
+<div class="pagination-centered">
+    <ul class="pagination" role="navigation" aria-label="Pagination">
+        {% if page_obj.has_previous %}
+            <li class="pagination-previous"><a href="?page=1">&laquo; Primera</a></li>
+            <li class="pagination-previous"><a href="?page={{ page_obj.previous_page_number }}">Anterior</a></li>
+        {% else %}
+            <li class="pagination-previous disabled">Primera</li>
+            <li class="pagination-previous disabled">Anterior</li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <li class="current"><span>{{ num }}</span></li>
+            {% elif num > page_obj.number|add:-3 and num < page_obj.number|add:3 %}
+                <li><a href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="pagination-next"><a href="?page={{ page_obj.next_page_number }}">Siguiente</a></li>
+            <li class="pagination-next"><a href="?page={{ page_obj.paginator.num_pages }}">Ultima &raquo;</a></li>
+        {% else %}
+            <li class="pagination-next disabled">Siguiente</li>
+            <li class="pagination-next disabled">Ultima</li>
+        {% endif %}
+    </ul>
+</div>
