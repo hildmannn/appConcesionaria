@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from .models import Vehiculo, Modelos,Marcas, Categorias, FichasTecnicas
 from applications.inventario.models import Proveedor
 from .forms import VehiculoSearchForm, ModelosForm, VehiculoForm
+from django.contrib.staticfiles.storage import staticfiles_storage
 
 class VehiculosDisponiblesView(ListView):
     model = Vehiculo
@@ -61,6 +62,7 @@ class VehiculosDisponiblesView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = VehiculoSearchForm(self.request.GET)
+        context['background_image'] = staticfiles_storage.url('images/auto.avif')
         return context
 
 

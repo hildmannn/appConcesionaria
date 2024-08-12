@@ -9,3 +9,10 @@ def home_view(request):
         'background_image': static('images/fondo.jpeg'),
     }
     return render(request, 'home/home.html', context)
+
+
+def nosotros(request):
+    context = {
+        'background_image': static('images/nosotros.jpeg'),
+    }
+    return render(request, 'home/nosotros.html', context)
