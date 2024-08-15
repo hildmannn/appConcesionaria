@@ -1,0 +1,112 @@
+{% extends 'baseAdmin.html' %}
+
+{% block title %}Lista de Vehículos{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <h1 class="text-center">Lista de Vehículos</h1>
+
+    <!-- Formulario de búsqueda y botón para crear -->
+    <form method="get" class="grid-x grid-margin-x grid-padding-x align-middle">
+        <div class="cell small-12 medium-6 large-4">
+            <label>Buscar por modelo o marca:
+                <input type="text" name="query" value="{{ request.GET.query }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Marcas:
+                <select name="marca">
+                    <option value="">----------</option>
+                    {% for marca in form.fields.marca.queryset %}
+                        <option value="{{ marca.pk }}" {% if marca.pk|stringformat:"s" == request.GET.marca %}selected{% endif %}>
+                            {{ marca }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Categoría:
+                <select name="categoria">
+                    <option value="">----------</option>
+                    {% for categoria in form.fields.categoria.queryset %}
+                        <option value="{{ categoria.pk }}" {% if categoria.pk|stringformat:"s" == request.GET.categoria %}selected{% endif %}>
+                            {{ categoria }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        <!-- Otros filtros aquí -->
+        <div class="cell small-12 medium-6 large-4">
+            <label>Km mínimo:
+                <input type="number" name="km_min" value="{{ request.GET.km_min }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Km máximo:
+                <input type="number" name="km_max" value="{{ request.GET.km_max }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Año mínimo:
+                <input type="number" name="año_min" value="{{ request.GET.año_min }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Año máximo:
+                <input type="number" name="año_max" value="{{ request.GET.año_max }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Precio mínimo:
+                <input type="number" name="precio_min" value="{{ request.GET.precio_min }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <label>Precio máximo:
+                <input type="number" name="precio_max" value="{{ request.GET.precio_max }}">
+            </label>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <button type="submit" class="button">Buscar</button>
+        </div>
+        <div class="cell small-12 medium-6 large-4 text-right">
+            <a href="{% url 'vehiculos_app:vehiculo-create' %}" class="button success">Crear Vehículo</a>
+        </div>
+    </form>
+
+    <!-- Lista de Vehículos -->
+    <ul class="no-bullet grid-x grid-margin-x grid-margin-y small-up-1 medium-up-2">
+        {% for vehiculo in vehiculos %}
+        <li class="cell">
+            <div class="card">
+                <div class="card-section">
+                    <div class="grid-x grid-margin-x align-middle">
+                        <div class="cell auto">
+                            <a href="{% url 'vehiculos_app:vehiculo_detalle' vehiculo.pk %}">
+                                {{ vehiculo.modelos }} - {{ vehiculo.color }}
+                            </a>
+                        </div>
+                        <div class="cell shrink">
+                            <form method="post" action="{% url 'vehiculos_app:vehiculo-delete' vehiculo.pk %}">
+                                {% csrf_token %}
+                                <button type="submit" class="button alert small">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <p><strong>Precio:</strong> {{ vehiculo.venta }}$</p>
+                    <p><strong>Kilómetros:</strong> {{ vehiculo.km }}</p>
+                    <p><strong>Año:</strong> {{ vehiculo.modelos.año.year }}</p>
+                    <p><strong>Disponibilidad:</strong> {{ vehiculo.disponibilidad|yesno:"Sí,No" }}</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+        
+    </ul>
+
+    {% include 'includes/pagination.html' %}
+</div>
+{% endblock content %}

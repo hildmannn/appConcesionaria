@@ -65,37 +65,7 @@
         </div>
 
         <div class="cell">
-            {% if is_paginated %}
-            <nav aria-label="Pagination">
-                <ul class="pagination">
-                    {% if vehiculos.has_previous %}
-                    <li class="pagination-previous">
-                        <a href="?page=1">&laquo; Primero</a>
-                    </li>
-                    <li class="pagination-previous">
-                        <a href="?page={{ vehiculos.previous_page_number }}">Anterior</a>
-                    </li>
-                    {% endif %}
-                    
-                    {% for page_num in vehiculos.paginator.page_range %}
-                        {% if page_num == vehiculos.number %}
-                        <li class="current"><span class="show-for-sr">Estás en la página</span> {{ page_num }}</li>
-                        {% else %}
-                        <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
-                        {% endif %}
-                    {% endfor %}
-                    
-                    {% if vehiculos.has_next %}
-                    <li class="pagination-next">
-                        <a href="?page={{ vehiculos.next_page_number }}">Siguiente</a>
-                    </li>
-                    <li class="pagination-next">
-                        <a href="?page={{ vehiculos.paginator.num_pages }}">Último &raquo;</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
-            {% endif %}
+            {% include 'includes/pagination.html' %}
         </div>
     </div>
 </div>

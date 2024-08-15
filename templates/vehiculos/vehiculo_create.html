@@ -1,48 +1,88 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crear Vehículo</title>
-</head>
-<body>
-    <h1>Crear Vehículo</h1>
-    <form method="post">
+{% extends 'baseAdmin.html' %}
+{% block title %} Crear Vehículo {% endblock title %}
+{% block content %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Crear Vehículo</h1>
+
+      <form method="post">
         {% csrf_token %}
-        <div class="form-group">
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             <label for="{{ form.modelos.id_for_label }}">Modelo</label>
             {{ form.modelos }}
-            <a href="{% url 'vehiculos_app:modelo-create' %}">Crear nuevo modelo</a>
+          </div>
+          <div class="cell shrink">
+            <a href="{% url 'vehiculos_app:modelo-create' %}" class="button secondary small">Crear nuevo modelo</a>
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             <label for="{{ form.proveedor.id_for_label }}">Proveedor</label>
             {{ form.proveedor }}
-            <a href="{% url 'vehiculos_app:proveedor-create' %}">Crear nuevo proveedor</a>
+          </div>
+          <div class="cell shrink">
+            <a href="{% url 'vehiculos_app:proveedor-create' %}" class="button secondary small">Crear nuevo proveedor</a>
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             {{ form.color.label_tag }}
             {{ form.color }}
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             {{ form.km.label_tag }}
             {{ form.km }}
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             {{ form.detalles.label_tag }}
             {{ form.detalles }}
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             {{ form.compra.label_tag }}
             {{ form.compra }}
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             {{ form.venta.label_tag }}
             {{ form.venta }}
+          </div>
         </div>
-        <div class="form-group">
+
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
             {{ form.disponibilidad.label_tag }}
             {{ form.disponibilidad }}
+          </div>
         </div>
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'vehiculos_app:vehiculo-list' %}">Volver a la lista</a>
-</body>
-</html>
+
+        <div class="text-center">
+          <button type="submit" class="button primary">Guardar</button>
+        </div>
+      </form>
+
+      <div class="text-center">
+        <a href="{% url 'vehiculos_app:vehiculo-list' %}" class="button secondary">Volver a la lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

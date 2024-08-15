@@ -12,12 +12,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dbconcesionaria',
-        'USER': 'lucas',
-        'PASSWORD': 'salsa',
+        'USER': 'hildmann',
+        'PASSWORD': 'hildmann',
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
+
 
 
 # Static files (CSS, JavaScript, Images)

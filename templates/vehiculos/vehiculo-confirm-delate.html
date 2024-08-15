@@ -1,0 +1,25 @@
+{% extends 'baseAdmin.html' %}
+{% block title %} Confirmar Eliminación del Vehículo {% endblock title %}
+{% block content %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell medium-8 large-6">
+            <h1 class="text-center">Confirmar Eliminación</h1>
+            <p class="text-center">¿Estás seguro de que deseas eliminar el vehículo "{{ object.modelos }}" con el color "{{ object.color }}"?</p>
+            <div class="grid-x grid-margin-x align-center">
+                <div class="cell small-6 text-center">
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="button alert">Eliminar</button>
+                    </form>
+                </div>
+                <div class="cell small-6 text-center">
+                    <a href="{% url 'vehiculos_app:vehiculo-list' %}" class="button secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
