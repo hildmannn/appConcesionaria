@@ -1,16 +1,34 @@
-
-
+{% extends 'baseAdmin.html' %}
+{% block title %}Detalle de la Venta{% endblock title %}
 {% block content %}
-  <h1>{{ venta }}</h1>
-  <p>Vehículo: {{ venta.vehiculo }}</p>
-  <p>Cliente: {{ venta.cliente }}</p>
-  <p>Empleado: {{ venta.empleado }}</p>
-  <p>Fecha: {{ venta.fecha }}</p>
-  <p>Medio de Pago: {{ venta.get_medioPago_display }}</p>
-  <p>Cuotas: {{ venta.get_cuotas_display }}</p>
-  <p>Interés: {{ venta.interes }}</p>
-  <p>Monto Financiado: {{ venta.montoFinanciado }}</p>
-  <a href="{% url 'ventas:ventas_update' venta.pk %}">Editar</a>
-  <a href="{% url 'ventas:ventas_delete' venta.pk %}">Eliminar</a>
-  <a href="{% url 'ventas:ventas_list' %}">Volver a la lista</a>
-{% endblock %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">{{ venta }}</h1>
+      
+      <!-- Detalles de la venta -->
+      <div class="callout">
+        <p><strong>Vehículo:</strong> {{ venta.vehiculo }}</p>
+        <p><strong>Cliente:</strong> {{ venta.cliente }}</p>
+        <p><strong>Empleado:</strong> {{ venta.empleado }}</p>
+        <p><strong>Fecha:</strong> {{ venta.fecha }}</p>
+        <p><strong>Medio de Pago:</strong> {{ venta.get_medioPago_display }}</p>
+        <p><strong>Cuotas:</strong> {{ venta.get_cuotas_display }}</p>
+        <p><strong>Interés:</strong> {{ venta.interes }}</p>
+        <p><strong>Monto Financiado:</strong> {{ venta.montoFinanciado }}</p>
+      </div>
+
+      <!-- Enlaces de acción -->
+      <div class="text-center">
+        <a href="{% url 'ventas:ventas_update' venta.pk %}" class="button primary">Editar</a>
+        <a href="{% url 'ventas:ventas_delete' venta.pk %}" class="button alert">Eliminar</a>
+        <a href="{% url 'ventas:ventas_list' %}" class="button secondary">Volver a la lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

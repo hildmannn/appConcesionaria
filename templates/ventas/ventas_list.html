@@ -1,11 +1,58 @@
-
-
+{% extends 'baseAdmin.html' %}
+{% block title %} Lista de Ventas {% endblock title %}
 {% block content %}
-  <h1>Ventas</h1>
-  <ul>
-    {% for venta in ventas %}
-      <li><a href="{% url 'ventas:ventas_detail' venta.pk %}">{{ venta }}</a></li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'ventas:ventas_create' %}">Nueva Venta</a>
-{% endblock %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Lista de Ventas</h1>
+
+      <!-- Botón para crear una nueva venta -->
+      <div class="text-center">
+        <a href="{% url 'ventas:ventas_create' %}" class="button primary">Nueva Venta</a>
+      </div>
+
+      <!-- Formulario de búsqueda -->
+      <form method="get">
+        <label for="id_query" class="middle">Buscar ventas:</label>
+        <div class="grid-x grid-margin-x">
+          <div class="cell auto">
+            {{ form.query }}
+          </div>
+          <div class="cell shrink">
+            <button type="submit" class="button primary">Buscar</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Lista de ventas -->
+      <ul class="no-bullet">
+        {% for venta in ventas %}
+          <li class="card">
+            <div class="card-section">
+              <div class="grid-x grid-margin-x align-middle">
+                <div class="cell auto">
+                  <a href="{% url 'ventas:ventas_detail' venta.pk %}">
+                    {{ venta.vehiculo }} - {{ venta.fecha }} - {{ venta.monto }}
+                  </a>
+                </div>
+                <div class="cell shrink">
+                  <a href="{% url 'ventas:ventas_delete' venta.pk %}" class="button alert small">
+                    <i class="fa fa-trash"></i> Eliminar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        {% empty %}
+          <li>No se encontraron ventas.</li>
+        {% endfor %}
+      </ul>
+      {% include 'includes/pagination.html' %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

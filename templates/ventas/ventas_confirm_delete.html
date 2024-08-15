@@ -1,11 +1,27 @@
-
-
+{% extends 'baseAdmin.html' %}
+{% block title %}Eliminar Venta{% endblock title %}
 {% block content %}
-  <h1>Eliminar Venta</h1>
-  <p>¿Estás seguro de que deseas eliminar esta venta?</p>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Eliminar</button>
-  </form>
-  <a href="{% url 'ventas:ventas_list' %}">Volver a la lista</a>
-{% endblock %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">Eliminar Venta</h1>
+      <p class="text-center">¿Estás seguro de que deseas eliminar esta venta?</p>
+
+      <!-- Formulario de confirmación de eliminación -->
+      <form method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="button alert">Eliminar</button>
+      </form>
+
+      <!-- Enlace para volver a la lista de ventas -->
+      <div class="text-center">
+        <a href="{% url 'ventas:ventas_list' %}" class="button secondary">Volver a la lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

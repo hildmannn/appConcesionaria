@@ -1,11 +1,29 @@
-
-
+{% extends 'baseAdmin.html' %}
+{% block title %}{% if form.instance.pk %}Editar{% else %}Nueva{% endif %} Venta{% endblock title %}
 {% block content %}
-  <h1>{% if form.instance.pk %}Editar{% else %}Nueva{% endif %} Venta</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-  </form>
-  <a href="{% url 'ventas:ventas_list' %}">Volver a la lista</a>
-{% endblock %}
+
+{% include 'includes/header.html' %}
+
+<div class="grid-container">
+  <div class="grid-x grid-margin-x align-center">
+    <div class="cell medium-8 large-6">
+      <h1 class="text-center">{% if form.instance.pk %}Editar{% else %}Nueva{% endif %} Venta</h1>
+
+      <!-- Formulario de venta -->
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="text-center">
+          <button type="submit" class="button primary">Guardar</button>
+        </div>
+      </form>
+
+      <!-- Enlace para volver a la lista de ventas -->
+      <div class="text-center">
+        <a href="{% url 'ventas:ventas_list' %}" class="button secondary">Volver a la lista</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
