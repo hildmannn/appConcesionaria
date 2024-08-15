@@ -16,57 +16,87 @@
         </div>
     </div>
 
-<div class="grid-container">
-    <div class="grid-x">
-        <h1 class="cell">Vehículos Disponibles</h1>
-        
-        <div class="cell">
-            <form method="get">
-                <div class="form-group">
-                    <label for="id_query">Buscar por modelo o marca:</label>
-                    {{ form.query }}
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x">
+            <div class="cell small-12 medium-3 large-3">
+                <form method="get">
+                    <div class="form-group">
+                        <label for="id_query">Buscar por modelo o marca:</label>
+                        {{ form.query }}
+                    </div>
+                    <div class="form-group">
+                        <label>Marcas:</label>
+                        {{ form.marca }}
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría:</label>
+                        {{ form.categoria }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_km_min">Km mínimo:</label>
+                        {{ form.km_min }}
+                        <label for="id_km_max">Km máximo:</label>
+                        {{ form.km_max }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_año_min">Año mínimo:</label>
+                        {{ form.año_min }}
+                        <label for="id_año_max">Año máximo:</label>
+                        {{ form.año_max }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_precio_min">Precio mínimo:</label>
+                        {{ form.precio_min }}
+                        <label for="id_precio_max">Precio máximo:</label>
+                        {{ form.precio_max }}
+                    </div>
+                    <button type="submit" class="button primary">Buscar</button>
+                </form>
+            </div>
+    
+            <div class="cell small-12 medium-9 large-9">
+                <h1>Vehículos Disponibles</h1>
+                <ul>
+                    {% for vehiculo in vehiculos %}
+                        <li>{{ vehiculo }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <div>
+                    {% if is_paginated %}
+                    <nav aria-label="Pagination">
+                        <ul class="pagination">
+                            {% if vehiculos.has_previous %}
+                            <li class="pagination-previous">
+                                <a href="?page=1">&laquo; Primero</a>
+                            </li>
+                            <li class="pagination-previous">
+                                <a href="?page={{ vehiculos.previous_page_number }}">Anterior</a>
+                            </li>
+                            {% endif %}
+                            
+                            {% for page_num in vehiculos.paginator.page_range %}
+                                {% if page_num == vehiculos.number %}
+                                <li class="current"><span class="show-for-sr">Estás en la página</span> {{ page_num }}</li>
+                                {% else %}
+                                <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if vehiculos.has_next %}
+                            <li class="pagination-next">
+                                <a href="?page={{ vehiculos.next_page_number }}">Siguiente</a>
+                            </li>
+                            <li class="pagination-next">
+                                <a href="?page={{ vehiculos.paginator.num_pages }}">Último &raquo;</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
                 </div>
-                <div class="form-group">
-                    <label>Marcas:</label>
-                    {{ form.marca }}
-                </div>
-                <div class="form-group">
-                    <label>Categoría:</label>
-                    {{ form.categoria }}
-                </div>
-                <div class="form-group">
-                    <label for="id_km_min">Km mínimo:</label>
-                    {{ form.km_min }}
-                    <label for="id_km_max">Km máximo:</label>
-                    {{ form.km_max }}
-                </div>
-                <div class="form-group">
-                    <label for="id_año_min">Año mínimo:</label>
-                    {{ form.año_min }}
-                    <label for="id_año_max">Año máximo:</label>
-                    {{ form.año_max }}
-                </div>
-                <div class="form-group">
-                    <label for="id_precio_min">Precio mínimo:</label>
-                    {{ form.precio_min }}
-                    <label for="id_precio_max">Precio máximo:</label>
-                    {{ form.precio_max }}
-                </div>
-                <button type="submit" class="button primary">Buscar</button>
-            </form>
-        </div>
-
-        <div class="cell">
-            <ul>
-                {% for vehiculo in vehiculos %}
-                    <li>{{ vehiculo }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-
-        <div class="cell">
-            {% include 'includes/pagination.html' %}
+            </div>
         </div>
     </div>
-</div>
+    
 {% endblock %}
