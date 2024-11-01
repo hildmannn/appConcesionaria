@@ -5,6 +5,7 @@ from .models import Vehiculo, Modelos,Marcas, Categorias, FichasTecnicas
 from applications.inventario.models import Proveedor
 from .forms import VehiculoSearchForm, ModelosForm, VehiculoForm
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.utils.dateparse import parse_date
 
 class VehiculosDisponiblesView(ListView):
     model = Vehiculo
@@ -81,9 +82,9 @@ class VehiculosListAdminView(ListView):
 
             if query:
                 queryset = queryset.filter(
-                    modelos__nombre__icontains=query
+                    modelos__modelo__icontains=query
                 ) | queryset.filter(
-                    modelos__marca__marca__icontains=query
+                    modelos__marcas__marca__icontains=query
                 )
 
             if marca:
@@ -98,11 +99,19 @@ class VehiculosListAdminView(ListView):
             if km_max is not None:
                 queryset = queryset.filter(km__lte=km_max)
                 
-            if año_min is not None:
-                queryset = queryset.filter(modelos__año__gte=año_min)
+            if año_min:
+                try:
+                    año_min_date = parse_date(f"{año_min}-01-01")  # Convierte el año a formato de fecha
+                    queryset = queryset.filter(modelos__año__gte=año_min_date)
+                except ValueError:
+                    pass  # Ignora el valor si no es un año válido
                 
-            if año_max is not None:
-                queryset = queryset.filter(modelos__año__lte=año_max)
+            if año_max:
+                try:
+                    año_max_date = parse_date(f"{año_max}-12-31")  # Convierte el año a formato de fecha
+                    queryset = queryset.filter(modelos__año__lte=año_max_date)
+                except ValueError:
+                    pass  # Ignora el valor si no es un año válido
                 
             if precio_min is not None:
                 queryset = queryset.filter(venta__gte=precio_min)
@@ -117,6 +126,7 @@ class VehiculosListAdminView(ListView):
         context['form'] = VehiculoSearchForm(self.request.GET)
         context['background_image'] = staticfiles_storage.url('images/auto.avif')
         return context
+
 
 
 class VehiculoDetailView(DetailView):
