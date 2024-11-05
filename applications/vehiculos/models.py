@@ -65,6 +65,7 @@ class Vehiculo(models.Model):
     compra = models.PositiveIntegerField('precio compra',null=True)
     venta = models.PositiveIntegerField('precio venta')
     disponibilidad = models.BooleanField(null=True)
+    portada = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null=True)
 
     def __str__(self):
         return f"{self.modelos} - {self.color}"

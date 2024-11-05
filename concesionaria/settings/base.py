@@ -12,6 +12,7 @@ SECRET_KEY = 'django-insecure-x=^2^&=q(5huf!5x1z1@c)3-1ok5o14#o)m1$1axmy&xu!67xz
 
 
 # Application definition
+AUTH_USER_MODEL = 'home.Usuarios'  # Ajusta 'home' según el nombre de tu aplicación
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -57,6 +58,13 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'applications.home.backends.EmailBackend',  # Reemplaza 'tu_app' por el nombre de tu aplicación
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
 
 WSGI_APPLICATION = 'concesionaria.wsgi.application'
 

@@ -70,6 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'concesionaria.wsgi.application'
 
+AUTH_USER_MODEL = 'home.Usuarios'  # Ajusta 'home' según el nombre de tu aplicación
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

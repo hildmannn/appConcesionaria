@@ -18,7 +18,7 @@
                 <li><a href="{% url 'home_app:vehiculos-list' %}" class="nav-link">Vehículos</a></li>
                 <li><a href="#" class="nav-link">Planes de ahorro</a></li>
                 <li><a href="#" class="nav-link">Ustedes</a></li>
-                <li><a href="{% url 'home_app:nosotros' %}" class="nav-link">¿Quienes Somos?</a></li>
+                <li><a href="" class="nav-link">¿Quienes Somos?</a></li>
                 <li><a href="#" class="nav-link" id="loginBtn">Login</a></li>
             </ul>
         </div>
@@ -109,6 +109,13 @@
                         <p><strong>Kilómetros:</strong> {{ vehiculo.km }}</p>
                         <p><strong>Año:</strong> {{ vehiculo.modelos.año.year }}</p>
                         <p><strong>Disponibilidad:</strong> {{ vehiculo.disponibilidad|yesno:"Sí,No" }}</p>
+                        <p><strong>portada</strong> {{ vehiculo.modelos.año.year }}</p>
+                        <p><strong>Portada:</strong></p>
+                        {% if vehiculo.portada %}
+                            <img src="{{ vehiculo.portada.url }}" alt="Portada del vehículo" style="width: 200px; height: auto;">
+                        {% else %}
+                            <p>No hay imagen disponible</p>
+                        {% endif %}
                     </div>
                 </div>
             </li>
